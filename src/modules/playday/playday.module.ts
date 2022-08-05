@@ -6,4 +6,4 @@ import { PlaydayController } from './playday.controller';
   controllers: [PlaydayController],
   providers: [],
 })
-export class UserModule {}
+export class PlaydayModule {}
