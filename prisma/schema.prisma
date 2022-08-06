@@ -1,3 +1,6 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,7 +11,46 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String
+  id          String        @id @default(uuid())
+  name        String
+  email       String
+  avatar      String
+  Playday     Playday[]
+  Participant Participant[]
+}
+
+model Participant {
+  id        String  @id @default(uuid())
+  user      User    @relation(references: [id], fields: [userId])
+  userId    String
+  playday   Playday @relation(references: [id], fields: [playdayId])
+  playdayId String
+  status    String
+}
+
+model Playday {
+  id                    String        @id @default(uuid())
+  admin                 User          @relation(references: [id], fields: [adminId])
+  date                  String
+  adminId               String
+  address_district      String
+  address_street        String
+  address_city          String
+  address_state         String
+  lot1_price            Decimal
+  lot1_vacancy_existent Int
+  lot1_vacancy_filled   Int
+  lot2_price            Decimal?
+  lot2_vacancy_existent Int?
+  lot2_vacancy_filled   Int?
+  lot3_price            Decimal?
+  lot3_vacancy_existent Int?
+  lot3_vacancy_filled   Int?
+  lot4_price            Decimal?
+  lot4_vacancy_existent Int?
+  lot4_vacancy_filled   Int?
+  lot5_price            Decimal?
+  lot5_vacancy_existent Int?
+  lot5_vacancy_filled   Int?
+  Participant           Participant[]
 }
