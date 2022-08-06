@@ -5,12 +5,11 @@ import { PlaydayGetByIdRepository } from './repository/get-by-id-repository';
 @Controller('playday')
 export class PlaydayController {
   constructor(
-    @Inject()
     private readonly repository: PlaydayGetByIdRepository
   ) {}
   
   @Get(':playdayId')
   async getById(@Param('playdayId') playdayId: string): Promise<Playday> {
-    return this.repository.execute(playdayId);
+    return this.repository.getById(playdayId);
   }
 }

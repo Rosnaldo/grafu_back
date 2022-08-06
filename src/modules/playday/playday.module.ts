@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { PrismaService } from 'src/services/prisma.service';
 import { PlaydayController } from './playday.controller';
 import { PlaydayGetByIdRepository } from './repository/get-by-id-repository';
 
@@ -6,7 +7,8 @@ import { PlaydayGetByIdRepository } from './repository/get-by-id-repository';
   imports: [],
   controllers: [PlaydayController],
   providers: [
-    PlaydayGetByIdRepository
+    PlaydayGetByIdRepository,
+    PrismaService,
   ],
 })
 export class PlaydayModule {}

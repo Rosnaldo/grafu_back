@@ -1,14 +1,21 @@
-import { Inject } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { Participant } from "@prisma/client";
-import { ParticipantService } from "../participant.service";
+import { PrismaService } from "src/services/prisma.service";
 
+@Injectable()
 export class ParticipantGetByPlaydayRepository {
-  constructor(
-    @Inject()
-    private readonly service: ParticipantService
-  ) {}
+  constructor(private prisma: PrismaService) {}
 
-  async execute (id: string): Promise<Participant[]> {
-    return this.service.getAll(id);
+  async getAll(
+    playdayId: string,
+  ): Promise<Participant[] | null> {
+    return this.prisma.participant.findMany({
+      where: {
+        playdayId,
+      },
+      include: {
+        user: true
+      }
+    });
   }
 }
