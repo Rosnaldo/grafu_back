@@ -8,6 +8,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { AppModule } from './app.module'
 import { PrismaService } from './services/prisma.service'
 
+declare const module: any
+
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
@@ -31,5 +33,10 @@ async function bootstrap() {
 
   const port = config.get('PORT')
   await app.listen(port, '0.0.0.0')
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
 }
 bootstrap()
