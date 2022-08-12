@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { PrismaService } from 'src/services/prisma.service';
-import { ParticipantController } from './participant.controller';
-import { ParticipantGetByPlaydayRepository } from './repository/get-by-playday-repository';
+import { Module } from '@nestjs/common'
+import { PrismaService } from 'src/services/prisma.service'
+import { ParticipantController } from './participant.controller'
+import { ParticipantGetByPlaydayRepository } from './repository/get-by-playday-repository'
 
 @Module({
   imports: [],

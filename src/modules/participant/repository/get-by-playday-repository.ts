@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
-import { Participant } from "@prisma/client";
-import { PrismaService } from "src/services/prisma.service";
+import { Injectable } from '@nestjs/common'
+import { Participant } from '@prisma/client'
+import { PrismaService } from 'src/services/prisma.service'
 
 @Injectable()
 export class ParticipantGetByPlaydayRepository {
@@ -16,6 +16,6 @@ export class ParticipantGetByPlaydayRepository {
       include: {
         user: true
       }
-    });
+    })
   }
 }

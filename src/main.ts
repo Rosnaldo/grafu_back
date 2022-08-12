@@ -1,19 +1,22 @@
-import { NestFactory } from '@nestjs/core';
+import { ConfigService } from '@nestjs/config'
+import { NestFactory } from '@nestjs/core'
 import {
   FastifyAdapter,
   NestFastifyApplication,
-} from '@nestjs/platform-fastify';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './app.module';
-import { PrismaService } from './services/prisma.service';
+} from '@nestjs/platform-fastify'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { AppModule } from './app.module'
+import { PrismaService } from './services/prisma.service'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter()
-  );
+  )
 
-  const prismaService = app.get(PrismaService);
+  const config = app.get<ConfigService>(ConfigService)
+
+  const prismaService = app.get(PrismaService)
   await prismaService.enableShutdownHooks(app)
 
   app.setGlobalPrefix('v1')
@@ -26,6 +29,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swagger)
   SwaggerModule.setup('docs', app, document)
 
-  await app.listen(3000);
+  const port = config.get('port')
+  await app.listen(port, '0.0.0.0')
 }
-bootstrap();
+bootstrap()

@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
-import { User } from "@prisma/client";
-import { PrismaService } from "src/services/prisma.service";
+import { Injectable } from '@nestjs/common'
+import { User } from '@prisma/client'
+import { PrismaService } from 'src/services/prisma.service'
 
 @Injectable()
 export class UserGetByIdRepository {
@@ -13,6 +13,6 @@ export class UserGetByIdRepository {
       where: {
         id,
       },
-    });
+    })
   }
 }

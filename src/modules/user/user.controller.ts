@@ -1,6 +1,6 @@
-import { Controller, Get, Inject, Param } from '@nestjs/common';
-import { User } from '@prisma/client';
-import { UserGetByIdRepository } from './repository/get-by-id-repository';
+import { Controller, Get, Inject, Param } from '@nestjs/common'
+import { User } from '@prisma/client'
+import { UserGetByIdRepository } from './repository/get-by-id-repository'
 
 @Controller('user')
 export class UserController {
@@ -10,6 +10,6 @@ export class UserController {
 
   @Get(':userId')
   getById(@Param('userId') userId: string): Promise<User> {
-    return this.repository.getById(userId);
+    return this.repository.getById(userId)
   }
 }
