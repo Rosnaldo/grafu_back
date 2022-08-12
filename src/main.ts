@@ -1,4 +1,3 @@
-import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import {
   FastifyAdapter,
@@ -14,8 +13,6 @@ async function bootstrap() {
     new FastifyAdapter()
   )
 
-  const config = app.get<ConfigService>(ConfigService)
-
   const prismaService = app.get(PrismaService)
   await prismaService.enableShutdownHooks(app)
 
@@ -29,7 +26,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swagger)
   SwaggerModule.setup('docs', app, document)
 
-  const port = config.get('PORT')
-  await app.listen(port, '0.0.0.0')
+  await app.listen(process.env.PORT || 3000)
 }
 bootstrap()
