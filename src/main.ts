@@ -16,6 +16,8 @@ async function bootstrap() {
     new FastifyAdapter()
   )
 
+  app.enableCors()
+
   const config = app.get<ConfigService>(ConfigService)
 
   const prismaService = app.get(PrismaService)
