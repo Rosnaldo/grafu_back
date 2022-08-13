@@ -51,5 +51,11 @@ model Playday {
   lot5_vacancy_filled   Int?
   gallery               String[]
   admin                 User          @relation(fields: [adminId], references: [id])
+  convenience_park      String[]
+  convenience_food      String[]
+  convenience_internet  String[]
+  convenience_sleep     String[]
+  convenience_parking   String[]
+  convenience_pool      String[]
   Participant           Participant[]
 }

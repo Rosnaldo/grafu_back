@@ -34,6 +34,12 @@ async function main() {
       lot1_price: 10.0,
       lot1_vacancy_existent: 10,
       lot1_vacancy_filled: 1,
+      convenience_park: ['Churrasqueira', 'jardim'],
+      convenience_food: ['Café da manhã', 'Almoço', 'janta'],
+      convenience_internet: ['Cobertura total de internet wireless'],
+      convenience_sleep: ['Quarto individual', 'Chuveiro'],
+      convenience_parking: ['Vagas para 10 carros'],
+      convenience_pool: ['Piscina para criança'],
     },
   })
 
