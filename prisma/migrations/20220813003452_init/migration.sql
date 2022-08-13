@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "avatar" TEXT NOT NULL,
@@ -10,9 +10,9 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Participant" (
-    "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "playdayId" TEXT NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "userId" UUID NOT NULL,
+    "playdayId" UUID NOT NULL,
     "status" TEXT NOT NULL,
 
     CONSTRAINT "Participant_pkey" PRIMARY KEY ("id")
@@ -20,9 +20,9 @@ CREATE TABLE "Participant" (
 
 -- CreateTable
 CREATE TABLE "Playday" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "date" TEXT NOT NULL,
-    "adminId" TEXT NOT NULL,
+    "adminId" UUID NOT NULL,
     "address_district" TEXT NOT NULL,
     "address_street" TEXT NOT NULL,
     "address_city" TEXT NOT NULL,
@@ -42,6 +42,7 @@ CREATE TABLE "Playday" (
     "lot5_price" DECIMAL(65,30),
     "lot5_vacancy_existent" INTEGER,
     "lot5_vacancy_filled" INTEGER,
+    "gallery" TEXT[],
 
     CONSTRAINT "Playday_pkey" PRIMARY KEY ("id")
 );

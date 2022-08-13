@@ -9,7 +9,7 @@ datasource db {
 }
 
 model User {
-  id          String        @id @default(uuid())
+  id          String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        String
   email       String
   avatar      String
@@ -18,18 +18,18 @@ model User {
 }
 
 model Participant {
-  id        String  @id @default(uuid())
-  userId    String
-  playdayId String
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String  @db.Uuid
+  playdayId String  @db.Uuid
   status    String
   playday   Playday @relation(fields: [playdayId], references: [id])
   user      User    @relation(fields: [userId], references: [id])
 }
 
 model Playday {
-  id                    String        @id @default(uuid())
+  id                    String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   date                  String
-  adminId               String
+  adminId               String        @db.Uuid
   address_district      String
   address_street        String
   address_city          String
