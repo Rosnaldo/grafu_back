@@ -47,10 +47,10 @@ CREATE TABLE "Playday" (
 );
 
 -- AddForeignKey
-ALTER TABLE "Participant" ADD CONSTRAINT "Participant_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Participant" ADD CONSTRAINT "Participant_playdayId_fkey" FOREIGN KEY ("playdayId") REFERENCES "Playday"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Participant" ADD CONSTRAINT "Participant_playdayId_fkey" FOREIGN KEY ("playdayId") REFERENCES "Playday"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Participant" ADD CONSTRAINT "Participant_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Playday" ADD CONSTRAINT "Playday_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

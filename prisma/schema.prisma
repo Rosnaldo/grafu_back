@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
@@ -13,22 +13,21 @@ model User {
   name        String
   email       String
   avatar      String
-  Playday     Playday[]
   Participant Participant[]
+  Playday     Playday[]
 }
 
 model Participant {
   id        String  @id @default(uuid())
-  user      User    @relation(references: [id], fields: [userId])
   userId    String
-  playday   Playday @relation(references: [id], fields: [playdayId])
   playdayId String
   status    String
+  playday   Playday @relation(fields: [playdayId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
 }
 
 model Playday {
   id                    String        @id @default(uuid())
-  admin                 User          @relation(references: [id], fields: [adminId])
   date                  String
   adminId               String
   address_district      String
@@ -50,5 +49,7 @@ model Playday {
   lot5_price            Decimal?
   lot5_vacancy_existent Int?
   lot5_vacancy_filled   Int?
+  gallery               String[]
+  admin                 User          @relation(fields: [adminId], references: [id])
   Participant           Participant[]
 }
