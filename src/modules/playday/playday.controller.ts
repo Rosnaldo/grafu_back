@@ -1,15 +1,35 @@
-import { Controller, Get, Inject, Param } from '@nestjs/common'
+import { BadRequestException, Controller, Get, Param, Query } from '@nestjs/common'
+import { ApiQuery, ApiTags } from '@nestjs/swagger'
 import { Playday } from '@prisma/client'
-import { PlaydayGetByIdRepository } from './repository/get-by-id-repository'
 
+import { isNil as _isNil } from 'lodash'
+
+import { PlaydayGetOneRepository } from './repository/get-one-repository'
+import { PlaydayQueryService } from './services/query.service'
+
+@ApiTags('playday')
 @Controller('playday')
 export class PlaydayController {
   constructor(
-    private readonly repository: PlaydayGetByIdRepository
+    private readonly repository: PlaydayGetOneRepository,
+    private readonly queryService: PlaydayQueryService
   ) {}
   
-  @Get(':playdayId')
-  async getById(@Param('playdayId') playdayId: string): Promise<Playday> {
-    return this.repository.getById(playdayId)
+  @Get(':id')
+  @ApiQuery({ name: 'participant', required: false, type: 'boolean' })
+  async getById(
+    @Param('id') id: string,
+    @Query('participant') participant: string,
+  ): Promise<Playday> {
+    const playday = await this.repository.execute(
+      { id },
+      this.queryService.execute(participant),
+    )
+
+    if (_isNil(playday)) {
+      throw new BadRequestException('Playday not found')
+    }
+
+    return playday
   }
 }

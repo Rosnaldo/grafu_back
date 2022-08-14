@@ -1,18 +1,18 @@
 import { Injectable } from "@nestjs/common"
-import { Playday } from "@prisma/client"
+import { Playday, Prisma } from "@prisma/client"
 import { PrismaService } from "src/services/prisma.service"
 
 @Injectable()
-export class PlaydayGetByIdRepository {
+export class PlaydayGetOneRepository {
   constructor(private prisma: PrismaService) {}
 
-  async getById(
-    id: string,
+  async execute(
+    where: Prisma.PlaydayWhereUniqueInput,
+    include: Prisma.PlaydayInclude = {},
   ): Promise<Playday | null> {
     return this.prisma.playday.findUnique({
-      where: {
-        id,
-      },
+      where,
+      include,
     })
   }
 }

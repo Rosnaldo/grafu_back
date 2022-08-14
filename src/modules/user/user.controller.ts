@@ -7,7 +7,7 @@ import { isNil as _isNil } from 'lodash'
 import { UserGetOneRepository } from './repositories/get-one-repository'
 import { UserQueryService } from './services/query.service';
 
-@ApiTags('users')
+@ApiTags('user')
 @Controller('user')
 export class UserController {
   private readonly logger = new Logger(UserController.name)

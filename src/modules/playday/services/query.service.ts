@@ -2,15 +2,13 @@ import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 
 @Injectable()
-export class UserQueryService {
+export class PlaydayQueryService {
   constructor() {}
 
   execute(
-    playday: string,
     participant: string,
-  ): Prisma.UserInclude {
+  ): Prisma.PlaydayInclude {
     return {
-      Playday: (playday != undefined),
       Participant: (participant != undefined),
     }
   }
