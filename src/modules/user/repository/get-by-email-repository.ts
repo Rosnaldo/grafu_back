@@ -13,6 +13,9 @@ export class UserGetByEmailRepository {
       where: {
         email,
       },
+      include: {
+        Playday: true,
+      },
     })
   }
 }
