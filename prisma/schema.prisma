@@ -9,12 +9,12 @@ datasource db {
 }
 
 model User {
-  id          String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name        String
-  email       String        @unique
-  avatar      String
-  Participate Participant[]
-  OwnPlayday  Playday[]
+  id           String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String
+  email        String        @unique
+  avatar       String
+  Participate  Participant[]
+  AdminPlayday Playday[]
 }
 
 model Participant {
@@ -57,5 +57,5 @@ model Playday {
   convenience_sleep     String[]
   convenience_parking   String[]
   convenience_pool      String[]
-  Participant           Participant[]
+  Participants          Participant[]
 }

@@ -9,7 +9,7 @@ export class PlaydayQueryService {
     participant: string,
   ): Prisma.PlaydayInclude {
     return {
-      Participant: (participant != undefined),
+      Participants: (participant != undefined),
     }
   }
 }
