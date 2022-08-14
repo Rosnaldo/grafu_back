@@ -1,15 +1,15 @@
 import { Controller, Get, Inject, Param } from '@nestjs/common'
 import { User } from '@prisma/client'
-import { UserGetByIdRepository } from './repository/get-by-id-repository'
+import { UserGetByEmailRepository } from './repository/get-by-email-repository'
 
 @Controller('user')
 export class UserController {
   constructor(
-    private readonly repository: UserGetByIdRepository
+    private readonly repository: UserGetByEmailRepository
   ) {}
 
-  @Get(':userId')
-  getById(@Param('userId') userId: string): Promise<User> {
-    return this.repository.getById(userId)
+  @Get(':email')
+  execute(@Param('email') email: string): Promise<User> {
+    return this.repository.execute(email)
   }
 }
