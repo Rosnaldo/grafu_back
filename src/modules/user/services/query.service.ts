@@ -10,8 +10,8 @@ export class UserQueryService {
     participant: string,
   ): Prisma.UserInclude {
     return {
-      Playday: (playday != undefined),
-      Participant: (participant != undefined),
+      OwnPlayday: (playday != undefined),
+      Participate: (participant != undefined),
     }
   }
 }
