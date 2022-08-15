@@ -34,19 +34,19 @@ model Playday {
   address_street        String
   address_city          String
   address_state         String
-  lot1_price            Decimal
+  lot1_price            Int
   lot1_vacancy_existent Int
   lot1_vacancy_filled   Int
-  lot2_price            Decimal?
+  lot2_price            Int?
   lot2_vacancy_existent Int?
   lot2_vacancy_filled   Int?
-  lot3_price            Decimal?
+  lot3_price            Int?
   lot3_vacancy_existent Int?
   lot3_vacancy_filled   Int?
-  lot4_price            Decimal?
+  lot4_price            Int?
   lot4_vacancy_existent Int?
   lot4_vacancy_filled   Int?
-  lot5_price            Decimal?
+  lot5_price            Int?
   lot5_vacancy_existent Int?
   lot5_vacancy_filled   Int?
   gallery               String[]
