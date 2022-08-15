@@ -5,11 +5,25 @@ import { Prisma } from '@prisma/client'
 export class PlaydayQueryService {
   constructor() {}
 
-  execute(
-    participant: string,
-  ): Prisma.PlaydayInclude {
+  execute({
+    participant = 'false',
+    participant_user = 'false',
+  }): Prisma.PlaydayInclude {
+    const includeParticipant = participant != undefined
+    const includeParticipantUser = participant_user != undefined
+  
+    if (includeParticipantUser) {
+      return {
+        participants: {
+          include: {
+            user: true,
+          }
+        }
+      }
+    }
+
     return {
-      Participants: (participant != undefined),
+      participants: includeParticipant,
     }
   }
 }

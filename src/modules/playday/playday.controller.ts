@@ -17,13 +17,15 @@ export class PlaydayController {
   
   @Get(':id')
   @ApiQuery({ name: 'participant', required: false, type: 'boolean' })
+  @ApiQuery({ name: 'participant_user', required: false, type: 'boolean' })
   async getById(
     @Param('id') id: string,
     @Query('participant') participant: string,
+    @Query('participant_user') participant_user: string,
   ): Promise<Playday> {
     const playday = await this.repository.execute(
       { id },
-      this.queryService.execute(participant),
+      this.queryService.execute({ participant, participant_user }),
     )
 
     if (_isNil(playday)) {
