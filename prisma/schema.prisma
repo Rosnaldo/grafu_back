@@ -13,8 +13,8 @@ model User {
   name         String
   email        String        @unique
   avatar       String
-  Participate  Participant[]
-  AdminPlayday Playday[]
+  participate  Participant[]
+  adminPlayday Playday[]
 }
 
 model Participant {
@@ -57,5 +57,5 @@ model Playday {
   convenience_sleep     String[]
   convenience_parking   String[]
   convenience_pool      String[]
-  Participants          Participant[]
+  participants          Participant[]
 }
