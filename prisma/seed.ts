@@ -19,6 +19,41 @@ async function main() {
     }
   })
 
+  const user3 = await prisma.user.create({
+    data: {
+      email: 'mayranabrito@gmail.com',
+      name: 'Mayrana Brito',
+      avatar: 'https://media-exp1.licdn.com/dms/image/C4D03AQG3j392gmNRfQ/profile-displayphoto-shrink_800_800/0/1622327303559?e=1665014400&v=beta&t=3sy3EDBNl507QBSEALd1BMbVBsEReWuyPS2VqBixo64',
+    }
+  })
+
+  const user4 = await prisma.user.create({
+    data: {
+      email: 'luizroberto@gmail.com',
+      name: 'Luiz Roberto Fava',
+      avatar:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQFszy6cgvKZFg/profile-displayphoto-shrink_800_800/0/1653030063690?e=1664409600&v=beta&t=CsntU7adzK0R22Sk22hut67qIw9YODPjz8THD_Q1cpU',
+    }
+  })
+
+  const user5 = await prisma.user.create({
+    data: {
+      email: 'marianogomide@gmail.com',
+      name: 'Mariano Gomide',
+      avatar:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQFvf2kCA75r_g/profile-displayphoto-shrink_800_800/0/1602959726513?e=1664409600&v=beta&t=WwDBjj-SojHVPKP8Aed1BVaIQOHVO9VhW81T1foOqAU',
+    }
+  })
+
+  const user6 = await prisma.user.create({
+    data: {
+      email: 'stefanievoss@gmail.com',
+      name: 'Stefanie Voss',
+      avatar:
+          'https://media-exp1.licdn.com/dms/image/C4D03AQHIFwJXNpJT6g/profile-displayphoto-shrink_800_800/0/1644233369004?e=1664409600&v=beta&t=-a7PwyulQuCeyQJwL8zjQLEOEW66AfzRla1LsjAhyBw',
+    }
+  })
+
   const playday = await prisma.playday.create({
     data: {
       admin: {
@@ -72,6 +107,70 @@ async function main() {
         }
       },
       status: 'confirmed',
+    },
+  })
+
+  await prisma.participant.create({
+    data: {
+      user: {
+        connect: {
+          id: user3.id,
+        }
+      },
+      playday: {
+        connect: {
+          id: playday.id
+        }
+      },
+      status: 'pending',
+    },
+  })
+
+  await prisma.participant.create({
+    data: {
+      user: {
+        connect: {
+          id: user4.id,
+        }
+      },
+      playday: {
+        connect: {
+          id: playday.id
+        }
+      },
+      status: 'pending',
+    },
+  })
+
+  await prisma.participant.create({
+    data: {
+      user: {
+        connect: {
+          id: user5.id,
+        }
+      },
+      playday: {
+        connect: {
+          id: playday.id
+        }
+      },
+      status: 'pending',
+    },
+  })
+
+  await prisma.participant.create({
+    data: {
+      user: {
+        connect: {
+          id: user6.id,
+        }
+      },
+      playday: {
+        connect: {
+          id: playday.id
+        }
+      },
+      status: 'pending',
     },
   })
 }

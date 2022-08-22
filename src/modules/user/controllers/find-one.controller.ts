@@ -4,13 +4,13 @@ import { User } from '@prisma/client'
 
 import { isNil as _isNil } from 'lodash'
 
-import { UserGetOneRepository } from './repositories/get-one-repository'
-import { UserQueryService } from './services/query.service';
+import { UserGetOneRepository } from '../repositories/get-one-repository'
+import { UserQueryService } from '../services/query.service';
 
 @ApiTags('user')
 @Controller('user')
-export class UserController {
-  private readonly logger = new Logger(UserController.name)
+export class UserFindOneController {
+  private readonly logger = new Logger(UserFindOneController.name)
   constructor(
     private readonly repository: UserGetOneRepository,
     private readonly queryService: UserQueryService
