@@ -9,7 +9,7 @@ export class UserUpdateOneRepository {
   async execute(
     where: Prisma.UserWhereUniqueInput,
     data: Prisma.UserUpdateInput,
-  ): Promise<User | null> {
+  ): Promise<User> {
     return this.prisma.user.update({
       where,
       data,
