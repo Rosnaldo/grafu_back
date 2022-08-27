@@ -21,18 +21,18 @@ export class RegisterParticipantController {
   async execute(
     @Body() body: RegisterDto,
   ): Promise<Participant> {
-    const { email } = body;
+    const { email } = body
 
-    const user = await this.userGetOneRepository.execute({ email });
+    const user = await this.userGetOneRepository.execute({ email })
     if (_isNil(user)) {
       throw new BadRequestException('User not found')
     }
   
-    const participant = await this.participantGetOneRepository.execute({ email });
+    const participant = await this.participantGetOneRepository.execute({ email })
     if (_isNil(participant)) {
       throw new BadRequestException('Participant not found')
     }
 
-    return this.registeredUseCase.execute({ participantId: participant.id, userId: user.id });
+    return this.registeredUseCase.execute({ participantId: participant.id, userId: user.id })
   }
 }

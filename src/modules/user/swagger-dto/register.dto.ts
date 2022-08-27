@@ -1,30 +1,32 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger'
+import { User } from '@prisma/client'
 
-export class UserRegisterDto {
+export class UserRegisterDto implements Omit<User, 'id'> {
   @ApiProperty({
     type: String,
   })
-  email: string;
-
-  @ApiProperty({
-    type: String,
-  })
-  name: string;
+  email: string
 
   @ApiProperty({
     type: String,
   })
-  avatar: string;
+  name: string
+
+  @ApiProperty({
+    type: String,
+    default: null,
+  })
+  avatar: string | null
 
   @ApiProperty({
     type: Number,
-    required: false,
+    default: null,
   })
-  age?: number;
+  age: number | null
 
   @ApiProperty({
     type: String,
-    required: false,
+    default: null,
   })
-  profession?: string;
+  profession: string | null
 }

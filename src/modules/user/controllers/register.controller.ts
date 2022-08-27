@@ -1,11 +1,11 @@
 import { Body, Controller, Logger, Post } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger'
 import { User } from '@prisma/client'
 
 import { isNil as _isNil } from 'lodash'
 
-import { UserInsertOneRepository } from '../repositories/insert-one-repository';
-import { UserRegisterDto } from '../swagger-dto/register.dto';
+import { UserInsertOneRepository } from '../repositories/insert-one-repository'
+import { UserRegisterDto } from '../swagger-dto/register.dto'
 
 @ApiTags('user')
 @Controller('user')

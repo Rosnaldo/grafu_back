@@ -1,8 +1,9 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger'
+import { Participant } from '@prisma/client'
 
-export class RegisterDto {
+export class RegisterDto implements Pick<Participant, 'email'> {
   @ApiProperty({
     type: String,
   })
-  email: string;
+  email: string
 }

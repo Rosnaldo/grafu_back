@@ -1,8 +1,8 @@
 import { Body, Controller, Logger, Param, Put } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger'
 
-import { UserUpdateOneRepository } from '../../repositories/update-one-repository';
-import { UpdateAvatarDto } from '../../swagger-dto/update-avatar.dto';
+import { UserUpdateOneRepository } from '../../repositories/update-one-repository'
+import { UpdateAvatarDto } from '../../swagger-dto/update-avatar.dto'
 
 @ApiTags('user')
 @Controller('user')

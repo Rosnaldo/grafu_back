@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common"
-import { Playday, Prisma } from "@prisma/client"
-import { PrismaService } from "src/services/prisma.service"
+import { Injectable } from '@nestjs/common'
+import { Playday, Prisma } from '@prisma/client'
+import { PrismaService } from 'src/services/prisma.service'
 
 @Injectable()
 export class PlaydayGetOneRepository {

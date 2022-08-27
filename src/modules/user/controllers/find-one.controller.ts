@@ -1,11 +1,11 @@
 import { BadRequestException, Controller, Get, Logger, Param, Query } from '@nestjs/common'
-import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger'
 import { User } from '@prisma/client'
 
 import { isNil as _isNil } from 'lodash'
 
 import { UserGetOneRepository } from '../repositories/get-one-repository'
-import { UserQueryService } from '../services/query.service';
+import { UserQueryService } from '../services/query.service'
 
 @ApiTags('user')
 @Controller('user')
