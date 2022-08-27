@@ -10,7 +10,7 @@ export class PlaydayGetOneRepository {
     where: Prisma.PlaydayWhereUniqueInput,
     include: Prisma.PlaydayInclude = {},
   ): Promise<Playday | null> {
-    return this.prisma.playday.findUnique({
+    return this.prisma.playday.findFirst({
       where,
       include,
     })

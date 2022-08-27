@@ -12,5 +12,6 @@ import { UserInsertOneRepository } from './repositories/insert-one-repository'
   imports: [],
   controllers: [UserRegisterController, UserFindOneController, UserUpdateAvatarController],
   providers: [UserInsertOneRepository, UserGetOneRepository, UserUpdateOneRepository, PrismaService, UserQueryService],
+  exports: [UserGetOneRepository],
 })
 export class UserModule {}

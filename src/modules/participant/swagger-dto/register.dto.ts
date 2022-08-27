@@ -5,9 +5,4 @@ export class RegisterDto {
     type: String,
   })
   email: string;
-
-  @ApiProperty({
-    type: String,
-  })
-  userId: string;
 }

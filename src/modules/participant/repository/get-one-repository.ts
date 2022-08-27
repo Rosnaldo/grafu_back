@@ -8,7 +8,10 @@ export class ParticipantGetOneRepository {
 
   async execute(
     where: Prisma.ParticipantWhereInput,
-    include: Prisma.ParticipantInclude = {},
+    include: Prisma.ParticipantInclude = {
+      playday: false,
+      user: false, 
+    },
   ): Promise<Participant> {
     return this.prisma.participant.findFirst({
       where,

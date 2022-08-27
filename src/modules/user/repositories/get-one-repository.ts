@@ -8,9 +8,13 @@ export class UserGetOneRepository {
 
   async execute(
     where: Prisma.UserWhereUniqueInput,
-    include: Prisma.UserInclude = {},
+    include: Prisma.UserInclude = {
+      participate: false,
+      adminPlayday: false,
+    },
   ): Promise<User | null> {
-    return this.prisma.user.findUnique({
+
+    return this.prisma.user.findFirst({
       where,
       include,
     })

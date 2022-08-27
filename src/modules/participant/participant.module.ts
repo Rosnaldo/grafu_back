@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { PrismaService } from 'src/services/prisma.service'
 
+import { UserModule } from '../user/user.module'
 import { ParticipantFindAllByPlaydayController } from './controller/find-all-by-playday.controller'
 import { InviteParticipantByEmailController } from './controller/invite-by-email.controller'
 import { RegisterParticipantController } from './controller/register-participant.controller'
@@ -12,7 +13,7 @@ import { ParticipantCreateUnregisteredUseCase } from './use-case/create-unregist
 import { ParticipantRegisteredUseCase } from './use-case/registered-participant'
 
 @Module({
-  imports: [],
+  imports: [UserModule],
   controllers: [
     ParticipantFindAllByPlaydayController,
     InviteParticipantByEmailController,
