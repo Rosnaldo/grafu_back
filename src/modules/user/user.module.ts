@@ -5,10 +5,12 @@ import { UserUpdateOneRepository } from './repositories/update-one-repository'
 import { UserQueryService } from './services/query.service'
 import { UserFindOneController } from './controllers/find-one.controller'
 import { UserUpdateAvatarController } from './controllers/update-avatar/index'
+import { UserRegisterController } from './controllers/register.controller'
+import { UserInsertOneRepository } from './repositories/insert-one-repository'
 
 @Module({
   imports: [],
-  controllers: [UserFindOneController, UserUpdateAvatarController],
-  providers: [UserGetOneRepository, UserUpdateOneRepository, PrismaService, UserQueryService],
+  controllers: [UserRegisterController, UserFindOneController, UserUpdateAvatarController],
+  providers: [UserInsertOneRepository, UserGetOneRepository, UserUpdateOneRepository, PrismaService, UserQueryService],
 })
 export class UserModule {}

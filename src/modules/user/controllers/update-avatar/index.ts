@@ -2,7 +2,7 @@ import { Body, Controller, Logger, Param, Put } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger';
 
 import { UserUpdateOneRepository } from '../../repositories/update-one-repository';
-import { Dto } from './swagger-dto';
+import { UpdateAvatarDto } from '../../swagger-dto/update-avatar.dto';
 
 @ApiTags('user')
 @Controller('user')
@@ -15,16 +15,11 @@ export class UserUpdateAvatarController {
   @Put(':id')
   async execute(
     @Param('id') id: string,
-    @Body() body: Dto,
+    @Body() body: UpdateAvatarDto,
   ): Promise<void> {
-    try {
-      await this.repository.execute(
-        { id },
-        { avatar: body.avatar }
-      )
-    } catch (err) {
-      this.logger.log(err.message)
-      this.logger.log(err.code)
-    }
+    await this.repository.execute(
+      { id },
+      { avatar: body.avatar }
+    )
   }
 }
