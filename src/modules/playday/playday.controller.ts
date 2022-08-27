@@ -1,13 +1,15 @@
-import { BadRequestException, Controller, Get, Param, Query } from '@nestjs/common'
+import { BadRequestException, Controller, Get, Param, Query, UseFilters } from '@nestjs/common'
 import { ApiQuery, ApiTags } from '@nestjs/swagger'
 import { Playday } from '@prisma/client'
 
 import { isNil as _isNil } from 'lodash'
+import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
 
 import { PlaydayGetOneRepository } from './repository/get-one-repository'
 import { PlaydayQueryService } from './services/query.service'
 
 @ApiTags('playday')
+@UseFilters(new GenerericPrismaExceptionFilter())
 @Controller('playday')
 export class PlaydayController {
   constructor(

@@ -1,13 +1,15 @@
-import { BadRequestException, Controller, Get, Logger, Param, Query } from '@nestjs/common'
+import { BadRequestException, Controller, Get, Logger, Param, Query, UseFilters } from '@nestjs/common'
 import { ApiQuery, ApiTags } from '@nestjs/swagger'
 import { User } from '@prisma/client'
 
 import { isNil as _isNil } from 'lodash'
+import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
 
 import { UserGetOneRepository } from '../repositories/get-one-repository'
 import { UserQueryService } from '../services/query.service'
 
 @ApiTags('user')
+@UseFilters(new GenerericPrismaExceptionFilter())
 @Controller('user')
 export class UserFindOneController {
   private readonly logger = new Logger(UserFindOneController.name)

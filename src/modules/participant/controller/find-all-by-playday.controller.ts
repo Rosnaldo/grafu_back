@@ -1,7 +1,11 @@
-import { Controller, Get, Inject, Param } from '@nestjs/common'
+import { Controller, Get, Param, UseFilters } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 import { Participant } from '@prisma/client'
+import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
 import { ParticipantGetAllRepository } from '../repository/get-all-repository'
 
+@ApiTags('participant')
+@UseFilters(new GenerericPrismaExceptionFilter())
 @Controller('participant')
 export class ParticipantFindAllByPlaydayController {
   constructor(
