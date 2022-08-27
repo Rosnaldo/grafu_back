@@ -17,7 +17,7 @@ export class UserRegisterController {
     private readonly repository: UserInsertOneRepository,
   ) {}
 
-  @Post()
+  @Post('register')
   async execute(
     @Body() body: UserRegisterDto,
   ): Promise<User> {
