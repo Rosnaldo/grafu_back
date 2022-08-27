@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { ParticipantStatus, PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
@@ -80,6 +80,7 @@ async function main() {
 
   await prisma.participant.create({
     data: {
+      email: user.email,
       user: {
         connect: {
           id: user.id,
@@ -90,12 +91,13 @@ async function main() {
           id: playday.id
         }
       },
-      status: 'confirmed',
+      status: ParticipantStatus.confirmed,
     },
   })
 
   await prisma.participant.create({
     data: {
+      email: user2.email,
       user: {
         connect: {
           id: user2.id,
@@ -106,12 +108,13 @@ async function main() {
           id: playday.id
         }
       },
-      status: 'confirmed',
+      status: ParticipantStatus.confirmed,
     },
   })
 
   await prisma.participant.create({
     data: {
+      email: user3.email,
       user: {
         connect: {
           id: user3.id,
@@ -122,12 +125,13 @@ async function main() {
           id: playday.id
         }
       },
-      status: 'pending',
+      status: ParticipantStatus.pending,
     },
   })
 
   await prisma.participant.create({
     data: {
+      email: user.email,
       user: {
         connect: {
           id: user4.id,
@@ -138,12 +142,13 @@ async function main() {
           id: playday.id
         }
       },
-      status: 'pending',
+      status: ParticipantStatus.pending,
     },
   })
 
   await prisma.participant.create({
     data: {
+      email: user5.email,
       user: {
         connect: {
           id: user5.id,
@@ -154,12 +159,13 @@ async function main() {
           id: playday.id
         }
       },
-      status: 'pending',
+      status: ParticipantStatus.pending,
     },
   })
 
   await prisma.participant.create({
     data: {
+      email: user6.email,
       user: {
         connect: {
           id: user6.id,
@@ -170,7 +176,7 @@ async function main() {
           id: playday.id
         }
       },
-      status: 'pending',
+      status: ParticipantStatus.pending,
     },
   })
 }

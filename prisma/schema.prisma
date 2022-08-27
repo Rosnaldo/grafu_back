@@ -17,13 +17,20 @@ model User {
   adminPlayday Playday[]
 }
 
+enum ParticipantStatus {
+  unregistered
+  pending
+  confirmed
+}
+
 model Participant {
-  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId    String  @db.Uuid
-  playdayId String  @db.Uuid
-  status    String
-  playday   Playday @relation(fields: [playdayId], references: [id])
-  user      User    @relation(fields: [userId], references: [id])
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email     String
+  userId    String?  @db.Uuid
+  playdayId String   @db.Uuid
+  status    ParticipantStatus
+  playday   Playday  @relation(fields: [playdayId], references: [id])
+  user      User?    @relation(fields: [userId], references: [id])
 }
 
 model Playday {
@@ -50,7 +57,7 @@ model Playday {
   lot5_vacancy_existent Int?
   lot5_vacancy_filled   Int?
   gallery               String[]
-  admin                 User          @relation(fields: [adminId], references: [id])
+  admin                 User          @relation(fields: [adminId], references: [id], onDelete: Cascade)
   convenience_park      String[]
   convenience_food      String[]
   convenience_internet  String[]
