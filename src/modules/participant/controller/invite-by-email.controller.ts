@@ -13,7 +13,7 @@ import { ParticipantCreateUnregisteredUseCase } from '../use-case/create-unregis
 @Controller('participant')
 export class InviteParticipantByEmailController {
   constructor(
-    private readonly insertOneRepository: ParticipantCreateUnregisteredUseCase,
+    private readonly createUnregisteredUseCase: ParticipantCreateUnregisteredUseCase,
   ) {}
   
   @Post('invite')
@@ -21,6 +21,6 @@ export class InviteParticipantByEmailController {
     @Body() body: InviteEmailDto,
   ): Promise<Participant> {
     const { playdayId, email } = body
-    return this.insertOneRepository.execute({ playdayId, email })
+    return this.createUnregisteredUseCase.execute({ playdayId, email })
   }
 }
