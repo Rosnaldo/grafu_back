@@ -8,9 +8,11 @@ export class ParticipantInsertOneRepository {
 
   async execute(
     data: Prisma.ParticipantCreateInput,
+    include: Prisma.ParticipantInclude,
   ): Promise<Participant> {
     return this.prisma.participant.create({
       data,
+      include,
     })
   }
 }

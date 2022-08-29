@@ -11,4 +11,9 @@ export class RegisterDto implements Pick<Participant, 'email' | 'playdayId'> {
     type: String,
   })
   playdayId: string
+
+  @ApiProperty({
+    type: String,
+  })
+  userId: string
 }

@@ -1,31 +1,31 @@
-import { BadRequestException, Body, CacheInterceptor, Controller, Logger, Post, UseFilters, UseInterceptors } from '@nestjs/common'
-import { Participant } from '@prisma/client'
+import { BadRequestException, Body, CacheInterceptor, Controller, Post, UseFilters, UseInterceptors } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 
 import { isNil as _isNil } from 'lodash'
 
-import { ParticipantGetOneRepository } from '../repository/get-one-repository'
-import { ParticipantRegisteredUseCase } from '../use-case/registered-participant'
-import { RegisterDto } from '../swagger-dto/register.dto'
+import { ParticipantGetOneRepository } from '../../repository/get-one-repository'
+import { ParticipantRegisteredUseCase } from '../../use-case/registered-participant'
+import { RegisterDto } from '../../swagger-dto/register.dto'
 import { UserGetOneRepository } from 'src/modules/user/repositories/get-one-repository'
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
+import { RegisteredResetPlaydayCacheService } from './registered-reset-playday-cache.service'
 
 @ApiTags('participant')
 @UseInterceptors(CacheInterceptor)
 @UseFilters(new GenerericPrismaExceptionFilter())
 @Controller('participant')
 export class RegisterParticipantController {
-  private readonly logger = new Logger(RegisterParticipantController.name)
   constructor(
     private readonly userGetOneRepository: UserGetOneRepository,
     private readonly participantGetOneRepository: ParticipantGetOneRepository,
     private readonly registeredUseCase: ParticipantRegisteredUseCase,
+    private readonly resetPlaydayCache: RegisteredResetPlaydayCacheService,
   ) {}
   
   @Post('register')
   async execute(
     @Body() body: RegisterDto,
-  ): Promise<Participant> {
+  ): Promise<void> {
     const { email, playdayId } = body
 
     const user = await this.userGetOneRepository.execute({ email })
@@ -38,6 +38,7 @@ export class RegisterParticipantController {
       throw new BadRequestException('Participant not found')
     }
 
-    return this.registeredUseCase.execute({ participantId: participant.id, userId: user.id })
+    const registerdParticipant = await this.registeredUseCase.execute({ participantId: participant.id, userId: user.id })
+    await this.resetPlaydayCache.execute(playdayId, registerdParticipant)
   }
 }

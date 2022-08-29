@@ -9,10 +9,12 @@ export class ParticipantUpdateOneRepository {
   async execute(
     where: Prisma.ParticipantWhereUniqueInput,
     data: Prisma.ParticipantUpdateInput = {},
+    include: Prisma.ParticipantInclude = {},
   ): Promise<Participant> {
     return this.prisma.participant.update({
       where,
       data,
+      include,
     })
   }
 }

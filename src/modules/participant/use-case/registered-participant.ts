@@ -32,6 +32,9 @@ export class ParticipantRegisteredUseCase {
         },
         status: ParticipantStatus.pending,
       },
+      {
+        user: true,
+      }
     )
   }
 }

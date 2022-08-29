@@ -1,12 +1,12 @@
 import { Body, Controller, Post, UseFilters } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
-import { Participant, ParticipantStatus } from '@prisma/client'
 
 import { isNil as _isNil } from 'lodash'
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
+import { InvitedResetPlaydayCacheService } from './invited-reset-playday-cache.service'
 
-import { InviteEmailDto } from '../swagger-dto/invite-email.dto'
-import { ParticipantCreateUnregisteredUseCase } from '../use-case/create-unregistered-participant copy'
+import { InviteEmailDto } from '../../swagger-dto/invite-email.dto'
+import { ParticipantCreateUnregisteredUseCase } from '../../use-case/create-unregistered-participant copy'
 
 @ApiTags('participant')
 @UseFilters(new GenerericPrismaExceptionFilter())
@@ -14,13 +14,15 @@ import { ParticipantCreateUnregisteredUseCase } from '../use-case/create-unregis
 export class InviteParticipantByEmailController {
   constructor(
     private readonly createUnregisteredUseCase: ParticipantCreateUnregisteredUseCase,
+    private readonly resetPlaydayCache: InvitedResetPlaydayCacheService,
   ) {}
   
-  @Post('invite')
+  @Post('invite-unregistered')
   async execute(
     @Body() body: InviteEmailDto,
-  ): Promise<Participant> {
+  ): Promise<void> {
     const { playdayId, email } = body
-    return this.createUnregisteredUseCase.execute({ playdayId, email })
+    const invitedParticipant = await this.createUnregisteredUseCase.execute({ playdayId, email })
+    await this.resetPlaydayCache.execute(playdayId, invitedParticipant)
   }
 }
