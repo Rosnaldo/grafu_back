@@ -1,4 +1,4 @@
-import { BadRequestException, Controller, Get, Param, Query, UseFilters } from '@nestjs/common'
+import { BadRequestException, CacheInterceptor, Controller, Get, Param, Query, UseFilters, UseInterceptors } from '@nestjs/common'
 import { ApiQuery, ApiTags } from '@nestjs/swagger'
 import { Playday } from '@prisma/client'
 
@@ -9,6 +9,7 @@ import { PlaydayGetOneRepository } from './repository/get-one-repository'
 import { PlaydayQueryService } from './services/query.service'
 
 @ApiTags('playday')
+@UseInterceptors(CacheInterceptor)
 @UseFilters(new GenerericPrismaExceptionFilter())
 @Controller('playday')
 export class PlaydayController {

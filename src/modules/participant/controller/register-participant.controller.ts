@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Logger, Post, UseFilters } from '@nestjs/common'
+import { BadRequestException, Body, CacheInterceptor, Controller, Logger, Post, UseFilters, UseInterceptors } from '@nestjs/common'
 import { Participant } from '@prisma/client'
 import { ApiTags } from '@nestjs/swagger'
 
@@ -11,6 +11,7 @@ import { UserGetOneRepository } from 'src/modules/user/repositories/get-one-repo
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
 
 @ApiTags('participant')
+@UseInterceptors(CacheInterceptor)
 @UseFilters(new GenerericPrismaExceptionFilter())
 @Controller('participant')
 export class RegisterParticipantController {
