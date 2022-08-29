@@ -4,8 +4,8 @@ import { Cache } from 'cache-manager';
 
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter';
 
-import { UserUpdateOneRepository } from '../../repositories/update-one-repository';
-import { GetUserCacheService } from '../../services/cache/set-user-cache.service';
+import { UserUpdateOneRepository } from '../../repository/update-one-repository';
+import { GetUserCacheService } from '../../service/cache/set-user-cache.service';
 import { UpdateAvatarDto } from '../../swagger-dto/update-avatar.dto';
 
 @ApiTags('user')

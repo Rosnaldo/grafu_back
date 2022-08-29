@@ -6,7 +6,7 @@ import { isNil as _isNil } from 'lodash'
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
 
 import { PlaydayGetOneRepository } from './repository/get-one-repository'
-import { PlaydayQueryService } from './services/query.service'
+import { PlaydayQueryService } from './service/query.service'
 
 @ApiTags('playday')
 @UseInterceptors(CacheInterceptor)

@@ -8,7 +8,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { AppModule } from './app.module'
 import { AllExceptionsFilter } from './common/filter/all-exceptions-filter'
 import { HttpExceptionFilter } from './common/filter/http-exception.filter'
-import { PrismaService } from './services/prisma.service'
+import { PrismaService } from './service/prisma.service'
 
 declare const module: any
 

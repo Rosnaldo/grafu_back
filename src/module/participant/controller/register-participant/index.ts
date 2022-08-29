@@ -6,7 +6,7 @@ import { isNil as _isNil } from 'lodash'
 import { ParticipantGetOneRepository } from '../../repository/get-one-repository'
 import { ParticipantRegisteredUseCase } from '../../use-case/registered-participant'
 import { RegisterDto } from '../../swagger-dto/register.dto'
-import { UserGetOneRepository } from 'src/modules/user/repositories/get-one-repository'
+import { UserGetOneRepository } from 'src/module/user/repository/get-one-repository'
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
 import { RegisteredResetPlaydayCacheService } from './registered-reset-playday-cache.service'
 

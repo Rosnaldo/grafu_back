@@ -2,8 +2,8 @@ import { CACHE_MANAGER, Inject, Injectable, Logger } from '@nestjs/common'
 import { Participant } from '@prisma/client';
 import { Cache } from 'cache-manager';
 
-import { GetPlaydayCacheService } from 'src/modules/playday/services/cache/get-playday-cache.service';
-import { ResetPlaydayCacheService } from 'src/modules/playday/services/cache/reset-playday-cache.service';
+import { GetPlaydayCacheService } from 'src/module/playday/service/cache/get-playday-cache.service';
+import { ResetPlaydayCacheService } from 'src/module/playday/service/cache/reset-playday-cache.service';
 
 @Injectable()
 export class InvitedResetPlaydayCacheService {

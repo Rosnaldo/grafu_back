@@ -5,8 +5,8 @@ import { User } from '@prisma/client'
 import { isNil as _isNil } from 'lodash'
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
 
-import { UserGetOneRepository } from '../repositories/get-one-repository'
-import { UserQueryService } from '../services/query.service'
+import { UserGetOneRepository } from '../repository/get-one-repository'
+import { UserQueryService } from '../service/query.service'
 
 @ApiTags('user')
 @UseInterceptors(CacheInterceptor)

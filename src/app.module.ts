@@ -3,9 +3,9 @@ import { ConfigModule } from '@nestjs/config'
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import * as redisStore from 'cache-manager-redis-store';
 
-import { ParticipantModule } from './modules/participant/participant.module'
-import { PlaydayModule } from './modules/playday/playday.module'
-import { UserModule } from './modules/user/user.module'
+import { ParticipantModule } from './module/participant/participant.module'
+import { PlaydayModule } from './module/playday/playday.module'
+import { UserModule } from './module/user/user.module'
 
 const ONE_WEEK = 60 * 60 * 24 * 7
 

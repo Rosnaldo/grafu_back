@@ -4,7 +4,7 @@ import { User } from '@prisma/client'
 
 import { isNil as _isNil } from 'lodash'
 
-import { UserInsertOneRepository } from '../../repositories/insert-one-repository'
+import { UserInsertOneRepository } from '../../repository/insert-one-repository'
 import { UserRegisterDto } from '../../swagger-dto/register.dto'
 import { PrismaExceptionFilter } from './prisma-exception.filter'
 
