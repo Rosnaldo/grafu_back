@@ -21,7 +21,7 @@ export class PlaydayController {
   @Get(':id')
   @ApiQuery({ name: 'participant', required: false, type: 'boolean' })
   @ApiQuery({ name: 'participant_user', required: false, type: 'boolean' })
-  async getById(
+  async execute(
     @Param('id') id: string,
     @Query('participant') participant: string,
     @Query('participant_user') participant_user: string,

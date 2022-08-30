@@ -28,7 +28,7 @@ const ONE_WEEK = 60 * 60 * 24 * 7
   controllers: [],
   providers: [
     {
-      provide:APP_INTERCEPTOR,
+      provide: APP_INTERCEPTOR,
       useClass: CacheInterceptor,
     },
   ],

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { PrismaService } from 'src/service/prisma.service'
-import { PlaydayController } from './playday.controller'
+import { PlaydayController } from './find-one.controller'
 import { PlaydayGetOneRepository } from './repository/get-one-repository'
 import { GetPlaydayCacheService } from './service/cache/get-playday-cache.service'
 import { PlaydayQueryService } from './service/query.service'

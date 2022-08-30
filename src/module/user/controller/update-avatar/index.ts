@@ -1,6 +1,5 @@
-import { Body, CACHE_MANAGER, Controller, Inject, Param, Put, UseFilters } from '@nestjs/common'
+import { Body, Controller, Param, Put, UseFilters } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger';
-import { Cache } from 'cache-manager';
 
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter';
 
@@ -13,7 +12,6 @@ import { UpdateAvatarDto } from '../../swagger-dto/update-avatar.dto';
 @Controller('user')
 export class UserUpdateAvatarController {
   constructor(
-    @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private readonly repository: UserUpdateOneRepository,
     private readonly getUserCache: GetUserCacheService,
   ) {}
