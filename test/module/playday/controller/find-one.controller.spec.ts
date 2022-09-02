@@ -7,8 +7,6 @@ import { PlaydayController } from 'src/module/playday/find-one.controller'
 import { PlaydayGetOneRepository } from 'src/module/playday/repository/get-one-repository'
 import { PlaydayQueryService } from 'src/module/playday/service/query.service'
 import { MakeMockPlayday } from 'src/mock/playday'
-import { ParticipantFindAllByPlaydayController } from 'src/module/participant/controller/find-all-by-playday.controller'
-import { ParticipantGetAllRepository } from 'src/module/participant/repository/get-all-repository'
 
 let controller
 const mockPlaydayGetOneRepository = {
@@ -26,11 +24,11 @@ const Sut = (playday: Playday) => {
   return { spyRepository, spyQuery }
 }
 
-describe('ParticipantFindAllByPlaydayController', () => {
+describe('PlaydayController', () => {
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [ParticipantFindAllByPlaydayController],
-      providers: [ParticipantGetAllRepository],
+      controllers: [PlaydayController],
+      providers: [PlaydayGetOneRepository, PlaydayQueryService],
     })
       .setLogger(new Logger())
       .overrideInterceptor(CacheInterceptor)
@@ -59,10 +57,10 @@ describe('ParticipantFindAllByPlaydayController', () => {
     const participant_user = 'true'
 
     await controller.execute(id, participant, participant_user)
-    expect(spyRepository).toBeCalledWith(
+    expect(spyRepository).toHaveBeenCalledWith(
       { id },
       { participants: true },
     )
-    expect(spyQuery).toBeCalledWith({ participant, participant_user })
+    expect(spyQuery).toHaveBeenCalledWith({ participant, participant_user })
   })
 })

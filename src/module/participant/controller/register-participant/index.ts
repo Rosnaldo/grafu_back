@@ -8,7 +8,7 @@ import { ParticipantRegisteredUseCase } from '../../use-case/registered-particip
 import { RegisterDto } from '../../swagger-dto/register.dto'
 import { UserGetOneRepository } from 'src/module/user/repository/get-one-repository'
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
-import { RegisteredResetPlaydayCacheService } from './registered-reset-playday-cache.service'
+import { ResetParticipantCacheService } from '../../service/reset-participant-cache.service'
 
 @ApiTags('participant')
 @UseInterceptors(CacheInterceptor)
@@ -19,7 +19,7 @@ export class RegisterParticipantController {
     private readonly userGetOneRepository: UserGetOneRepository,
     private readonly participantGetOneRepository: ParticipantGetOneRepository,
     private readonly registeredUseCase: ParticipantRegisteredUseCase,
-    private readonly resetPlaydayCache: RegisteredResetPlaydayCacheService,
+    private readonly resetCache: ResetParticipantCacheService,
   ) {}
   
   @Post('register')
@@ -39,6 +39,6 @@ export class RegisterParticipantController {
     }
 
     const registerdParticipant = await this.registeredUseCase.execute({ participantId: participant.id, userId: user.id })
-    await this.resetPlaydayCache.execute(playdayId, registerdParticipant)
+    await this.resetCache.execute(playdayId, registerdParticipant)
   }
 }

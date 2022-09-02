@@ -60,10 +60,10 @@ describe('UserFindOneController', () => {
   
     await controller.execute(email, playday, participant)
   
-    expect(spyGetRepository).toBeCalledWith({ email }, {
+    expect(spyGetRepository).toHaveBeenCalledWith({ email }, {
       adminPlayday: true,
       participate: true,
     })
-    expect(spyQuery).toBeCalledWith(playday, participant)
+    expect(spyQuery).toHaveBeenCalledWith(playday, participant)
   })
 })

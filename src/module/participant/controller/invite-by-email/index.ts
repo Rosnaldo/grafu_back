@@ -3,10 +3,10 @@ import { ApiTags } from '@nestjs/swagger'
 
 import { isNil as _isNil } from 'lodash'
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
-import { InvitedResetPlaydayCacheService } from './invited-reset-playday-cache.service'
 
 import { InviteEmailDto } from '../../swagger-dto/invite-email.dto'
 import { ParticipantCreateUnregisteredUseCase } from '../../use-case/create-unregistered-participant copy'
+import { ResetParticipantCacheService } from '../../service/reset-participant-cache.service'
 
 @ApiTags('participant')
 @UseFilters(new GenerericPrismaExceptionFilter())
@@ -14,7 +14,7 @@ import { ParticipantCreateUnregisteredUseCase } from '../../use-case/create-unre
 export class InviteParticipantByEmailController {
   constructor(
     private readonly createUnregisteredUseCase: ParticipantCreateUnregisteredUseCase,
-    private readonly resetPlaydayCache: InvitedResetPlaydayCacheService,
+    private readonly resetCache: ResetParticipantCacheService,
   ) {}
   
   @Post('invite-unregistered')
@@ -23,6 +23,6 @@ export class InviteParticipantByEmailController {
   ): Promise<void> {
     const { playdayId, email } = body
     const invitedParticipant = await this.createUnregisteredUseCase.execute({ playdayId, email })
-    await this.resetPlaydayCache.execute(playdayId, invitedParticipant)
+    await this.resetCache.execute(playdayId, invitedParticipant)
   }
 }

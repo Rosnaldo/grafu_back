@@ -44,7 +44,7 @@ describe('ParticipantFindAllByPlaydayController', () => {
     const playdayId = 'playdayId'
 
     await controller.execute(playdayId)
-    expect(spy).toBeCalledWith(
+    expect(spy).toHaveBeenCalledWith(
       {
         playdayId,
       },

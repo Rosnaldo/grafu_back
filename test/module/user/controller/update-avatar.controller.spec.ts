@@ -50,10 +50,10 @@ describe('UserUpdateAvatarController', () => {
   
     await controller.execute('id', { avatar: 'avatar' })
   
-    expect(spyUpdateOneRepository).toBeCalledWith(
+    expect(spyUpdateOneRepository).toHaveBeenCalledWith(
       { id: 'id' },
       { avatar: 'avatar' }
     )
-    expect(spyGetUserCacheService).toBeCalledWith('andreytsuzuki@gmail.com')
+    expect(spyGetUserCacheService).toHaveBeenCalledWith('andreytsuzuki@gmail.com')
   })
 })

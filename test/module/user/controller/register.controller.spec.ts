@@ -49,6 +49,6 @@ describe('UserRegisterController', () => {
       profession: 'profession',
     }
     await controller.execute(body)
-    expect(spy).toBeCalledWith(body)
+    expect(spy).toHaveBeenCalledWith(body)
   })
 })
