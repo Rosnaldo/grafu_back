@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import { GetPlaydayCacheService } from 'src/module/playday/service/cache/get-playday-cache.service'
-import { ResetPlaydayCacheService } from 'src/module/playday/service/cache/reset-playday-cache.service'
 import { ParticipantUpdateOneRepository } from '../repository/update-one-repository'
 import { ResetParticipantCacheService } from '../service/reset-participant-cache.service'
 
