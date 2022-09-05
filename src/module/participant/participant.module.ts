@@ -4,6 +4,7 @@ import { PrismaService } from 'src/service/prisma.service'
 import { PlaydayModule } from '../playday/playday.module'
 import { UserModule } from '../user/user.module'
 import { ParticipantFindAllByPlaydayController } from './controller/find-all-by-playday.controller'
+import { ParticipantFindOneController } from './controller/find-one.controller'
 import { InviteParticipantByEmailController } from './controller/invite-by-email'
 import { RegisterParticipantController } from './controller/register-participant'
 import { ParticipantUpdateToConfirmedController } from './controller/update-to-confirmed'
@@ -19,6 +20,7 @@ import { ParticipantUpdateUseCase } from './use-case/update-participant'
 @Module({
   imports: [UserModule, PlaydayModule],
   controllers: [
+    ParticipantFindOneController,
     ParticipantFindAllByPlaydayController,
     InviteParticipantByEmailController,
     RegisterParticipantController,

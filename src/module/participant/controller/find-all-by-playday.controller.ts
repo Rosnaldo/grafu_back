@@ -13,7 +13,7 @@ export class ParticipantFindAllByPlaydayController {
     private readonly repository: ParticipantGetAllRepository,
   ) {}
   
-  @Get(':playdayId')
+  @Get('find-by-playday/:playdayId')
   async execute(@Param('playdayId') playdayId: string): Promise<Participant[]> {
     return this.repository.execute(
     {
