@@ -5,7 +5,7 @@ import { User } from '@prisma/client'
 import { MakeMockUser } from 'src/mock/user'
 import { UserUpdateAvatarController } from 'src/module/user/controller/update-avatar'
 import { UserUpdateOneRepository } from 'src/module/user/repository/update-one-repository'
-import { GetUserCacheService } from 'src/module/user/service/cache/set-user-cache.service'
+import { GetUserCacheService } from 'src/module/user/service/cache/get-user-cache.service'
 
 let controller
 const mockUserUpdateOneRepository = {

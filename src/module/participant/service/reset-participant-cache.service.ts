@@ -4,12 +4,14 @@ import { PlaydayWithParticipants } from 'src/module/playday/model/playdayWithPar
 
 import { GetPlaydayCacheService } from 'src/module/playday/service/cache/get-playday-cache.service';
 import { ResetPlaydayCacheService } from 'src/module/playday/service/cache/reset-playday-cache.service';
+import { ResetParticipantCheckInviteStatusCacheService } from './check-invite-status-cache.service';
 
 @Injectable()
 export class ResetParticipantCacheService {
   private readonly logger = new Logger(ResetParticipantCacheService.name)
 
   constructor(
+    private readonly resetParticipantCheckInviteStatusCacheService: ResetParticipantCheckInviteStatusCacheService,
     private readonly resetPlaydayCache: ResetPlaydayCacheService,
     private readonly getPlaydayCache: GetPlaydayCacheService,
   ) {}
@@ -22,17 +24,12 @@ export class ResetParticipantCacheService {
     playday.participants.push(participant)
   }
 
-  async execute(
-    playdayId: string,
-    newParticipant: Participant,
-  ): Promise<void> {
+  async updatePlayday(playdayId: string, newParticipant: Participant) {
     const playday = await this.getPlaydayCache.execute(playdayId)
 
     if (playday) {
       const pIndex = playday.participants.findIndex((p) => p.email == newParticipant.email)
       const participantFound  = pIndex != -1
-
-      this.logger.log(participantFound)
   
       if (participantFound) {
         this.updateParticipant(playday, newParticipant, pIndex)
@@ -42,5 +39,13 @@ export class ResetParticipantCacheService {
 
       await this.resetPlaydayCache.execute(playdayId, playday)
     }
+  }
+
+  async execute(
+    playdayId: string,
+    newParticipant: Participant,
+  ): Promise<void> {
+    await this.updatePlayday(playdayId, newParticipant)
+    await this.resetParticipantCheckInviteStatusCacheService.execute(playdayId, newParticipant)
   }
 }

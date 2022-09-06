@@ -6,6 +6,7 @@ import { isNil as _isNil } from 'lodash'
 
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
 import { ParticipantGetOneRepository } from '../repository/get-one-repository'
+import { ResetParticipantCacheService } from '../service/reset-participant-cache.service'
 
 @ApiTags('participant')
 @UseInterceptors(CacheInterceptor)
@@ -15,6 +16,7 @@ export class ParticipantCheckInviteStatusController {
   private readonly logger = new Logger(ParticipantCheckInviteStatusController.name)
   constructor(
     private readonly findRepository: ParticipantGetOneRepository,
+    private readonly resetCache: ResetParticipantCacheService,
   ) {}
   
   @Get('check-invite-status/:playdayId/:email')
@@ -23,10 +25,7 @@ export class ParticipantCheckInviteStatusController {
     @Param('email') email: string,
   ): Promise<ParticipantStatus | 'null'> {
     const participant = await this.findRepository.execute({ email, playdayId })
-    if (_isNil(participant)) {
-      return 'null'
-    }
-
-    return participant.status
+    const status = _isNil(participant) ? participant.status : 'null'
+    return status
   }
 }

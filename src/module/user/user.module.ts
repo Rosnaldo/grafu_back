@@ -8,7 +8,7 @@ import { UserQueryService } from './service/query.service'
 import { UserFindOneController } from './controller/find-one.controller'
 import { UserUpdateAvatarController } from './controller/update-avatar/index'
 import { UserRegisterController } from './controller/register.controller'
-import { GetUserCacheService } from './service/cache/set-user-cache.service'
+import { GetUserCacheService } from './service/cache/get-user-cache.service'
 
 @Module({
   imports: [],
