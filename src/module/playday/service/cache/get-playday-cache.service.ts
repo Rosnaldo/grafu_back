@@ -1,6 +1,6 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common'
 import { Cache } from 'cache-manager';
-import { PlaydayWithParticipants } from '../../model/playdayWithParticipants';
+import { PlaydayWithParticipantsAndUser } from '../../model/playday-with-participants-and-user';
 
 @Injectable()
 export class GetPlaydayCacheService {
@@ -8,7 +8,7 @@ export class GetPlaydayCacheService {
 
   async execute(
     playdayId: string,
-  ): Promise<PlaydayWithParticipants | null> {
-    return this.cacheManager.get(`/v1/playday/${playdayId}`)
+  ): Promise<PlaydayWithParticipantsAndUser | null> {
+    return this.cacheManager.get(`/v1/playday/${playdayId}?participant_user=true`)
   }
 }

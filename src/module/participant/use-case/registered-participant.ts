@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { Participant, ParticipantStatus, Prisma } from '@prisma/client'
+import { Participant, ParticipantStatus } from '@prisma/client'
+import { ParticipantsWithUser } from '../model/participant-with-user'
 
 import { ParticipantUpdateOneRepository } from '../repository/update-one-repository'
 
@@ -19,7 +20,7 @@ export class ParticipantRegisteredUseCase {
       participantId,
       userId,
     }: Input
-  ): Promise<Participant> {
+  ): Promise<ParticipantsWithUser> {
     return this.updateOneRepository.execute(
       {
         id: participantId,
@@ -32,9 +33,6 @@ export class ParticipantRegisteredUseCase {
         },
         status: ParticipantStatus.pending,
       },
-      {
-        user: true,
-      }
-    )
+    ) as Promise<ParticipantsWithUser>
   }
 }

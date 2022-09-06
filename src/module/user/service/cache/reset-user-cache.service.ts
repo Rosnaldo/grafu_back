@@ -4,7 +4,9 @@ import { Cache } from 'cache-manager';
 
 @Injectable()
 export class ResetUserCacheService {
-  constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
+  constructor(
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+  ) {}
 
   async execute(
     newUser: User,

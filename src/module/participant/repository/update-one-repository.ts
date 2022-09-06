@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Participant, Prisma } from '@prisma/client'
 import { PrismaService } from 'src/service/prisma.service'
+import { ParticipantsWithUser } from '../model/participant-with-user'
 
 @Injectable()
 export class ParticipantUpdateOneRepository {
@@ -13,7 +14,7 @@ export class ParticipantUpdateOneRepository {
       playday: false,
       user: true,
     },
-  ): Promise<Participant> {
+  ): Promise<ParticipantsWithUser | Participant> {
     return this.prisma.participant.update({
       where,
       data,

@@ -1,7 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
-import { Participant, ParticipantStatus, Prisma } from '@prisma/client'
+import { ParticipantStatus, Prisma } from '@prisma/client'
 
 import { isNil as _isNil } from 'lodash'
+import { ParticipantsWithUser } from '../model/participant-with-user'
 import { ParticipantGetOneRepository } from '../repository/get-one-repository'
 
 import { ParticipantInsertOneRepository } from '../repository/insert-one-repository'
@@ -23,7 +24,7 @@ export class ParticipantCreateUnregisteredUseCase {
       playdayId,
       email,
     }: Input
-  ): Promise<Participant> {
+  ): Promise<ParticipantsWithUser> {
     const participnat = await this.getOneRepository.execute(
       {
         playdayId,
@@ -47,6 +48,6 @@ export class ParticipantCreateUnregisteredUseCase {
       {
         user: true,
       }
-    )
+    ) as Promise<ParticipantsWithUser>
   }
 }

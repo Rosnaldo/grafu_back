@@ -1,5 +1,5 @@
 import { Playday } from "@prisma/client"
-import { PlaydayWithParticipants } from "src/module/playday/model/playdayWithParticipants"
+import { PlaydayWithParticipantsAndUser } from "src/module/playday/model/playday-with-participants-and-user"
 
 export const MakeMockPlayday = (): Playday => ({
   id: 'id',
@@ -40,7 +40,7 @@ export const MakeMockPlayday = (): Playday => ({
   ],
 })
 
-export const MakeMockPlaydayWithParticipants = (): PlaydayWithParticipants => ({
+export const MakeMockPlaydayWithParticipants = (): PlaydayWithParticipantsAndUser => ({
   id: 'id',
   adminId: 'adminId',
   date: '10 de julho de 2022, 15h - 14 de agosto de 2022, 19h',
@@ -84,13 +84,29 @@ export const MakeMockPlaydayWithParticipants = (): PlaydayWithParticipants => ({
       "userId": "a38ca0b3-3734-4f31-af19-57b61068f4af",
       "playdayId": "6618fa37-5de2-49cb-9d72-e828da3eab1e",
       "status": "pending",
+      "user": {
+        "id": "c3bacb71-23b9-45b8-b7ba-cdf3f7326e36",
+        "name": "Mayrana Brito",
+        "email": "mayranabrito@gmail.com",
+        "avatar": "https://firebasestorage.googleapis.com/v0/b/grafu-357616.appspot.com/o/avatar-images%2F4679a6cf-ef13-478f-85f6-ad3bec84298f?alt=media&token=103c8ad3-9916-4fcc-a90f-abc5a1e5663f",
+        "profession": "pintora",
+        "age": 28
+      }
     },
     {
-      "id": "7ca0838e-66a5-4437-852d-594c72822fc0",
-      "email": "marianogomide@gmail.com",
-      "userId": "226a1109-7ba9-42a4-a7ff-1fc7234cefc5",
-      "playdayId": "6618fa37-5de2-49cb-9d72-e828da3eab1e",
-      "status": "pending",
-    },
+      "id": "50f98b79-9d89-4c9e-b213-52a73ac1e721",
+      "email": "andreytsuzuki@gmail.com",
+      "userId": "c3bacb71-23b9-45b8-b7ba-cdf3f7326e36",
+      "playdayId": "26bdf87b-4917-4d59-87ad-3fa1dd6ce6a8",
+      "status": "confirmed",
+      "user": {
+        "id": "c3bacb71-23b9-45b8-b7ba-cdf3f7326e36",
+        "name": "Andrey Kenji Tsuzuki",
+        "email": "andreytsuzuki@gmail.com",
+        "avatar": "https://firebasestorage.googleapis.com/v0/b/grafu-357616.appspot.com/o/avatar-images%2F4679a6cf-ef13-478f-85f6-ad3bec84298f?alt=media&token=103c8ad3-9916-4fcc-a90f-abc5a1e5663f",
+        "profession": "desenvolvedor",
+        "age": 30
+      }
+    }
   ]
 })
