@@ -9,6 +9,7 @@ import { UserFindOneController } from './controller/find-one.controller'
 import { UserUpdateAvatarController } from './controller/update-avatar/index'
 import { UserRegisterController } from './controller/register.controller'
 import { GetUserCacheService } from './service/cache/get-user-cache.service'
+import { ResetUserCacheService } from './service/cache/reset-user-cache.service'
 
 @Module({
   imports: [],
@@ -24,6 +25,7 @@ import { GetUserCacheService } from './service/cache/get-user-cache.service'
     PrismaService,
     UserQueryService,
     GetUserCacheService,
+    ResetUserCacheService,
   ],
   exports: [UserGetOneRepository]
 })

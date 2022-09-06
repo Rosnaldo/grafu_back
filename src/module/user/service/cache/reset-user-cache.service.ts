@@ -1,13 +1,14 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common'
+import { User } from '@prisma/client';
 import { Cache } from 'cache-manager';
 
 @Injectable()
-export class GetUserCacheService {
+export class ResetUserCacheService {
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
   async execute(
-    email: string,
-  ): Promise<string | null> {
-    return this.cacheManager.get(`/v1/user/${email}`)
+    newUser: User,
+  ): Promise<void> {
+    this.cacheManager.set(`/v1/user/${newUser.email}`, newUser)
   }
 }
