@@ -4,7 +4,6 @@ import { ApiTags } from '@nestjs/swagger';
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter';
 
 import { UserUpdateOneRepository } from '../../repository/update-one-repository';
-import { GetUserCacheService } from '../../service/cache/get-user-cache.service';
 import { ResetUserCacheService } from '../../service/cache/reset-user-cache.service';
 import { UpdateAvatarDto } from '../../swagger-dto/update-avatar.dto';
 

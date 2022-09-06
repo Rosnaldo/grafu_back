@@ -25,7 +25,7 @@ export class ParticipantCheckInviteStatusController {
     @Param('email') email: string,
   ): Promise<ParticipantStatus | 'null'> {
     const participant = await this.findRepository.execute({ email, playdayId })
-    const status = _isNil(participant) ? participant.status : 'null'
+    const status = _isNil(participant) ? 'null' : participant.status
     return status
   }
 }
