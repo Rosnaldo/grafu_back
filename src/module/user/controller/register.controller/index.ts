@@ -1,4 +1,4 @@
-import { Body, Controller, Logger, Post, UseFilters } from '@nestjs/common'
+import { Body, Controller, Logger, Post, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { User } from '@prisma/client'
 
@@ -9,6 +9,7 @@ import { UserRegisterDto } from '../../swagger-dto/register.dto'
 import { PrismaExceptionFilter } from './prisma-exception.filter'
 
 @ApiTags('user')
+@UsePipes(ValidationPipe)
 @UseFilters(new PrismaExceptionFilter())
 @Controller('user')
 export class UserRegisterController {

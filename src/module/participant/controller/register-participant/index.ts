@@ -1,4 +1,4 @@
-import { BadRequestException, Body, CacheInterceptor, Controller, Post, UseFilters, UseInterceptors } from '@nestjs/common'
+import { BadRequestException, Body, CacheInterceptor, Controller, Post, UseFilters, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 
 import { isNil as _isNil } from 'lodash'
@@ -11,6 +11,7 @@ import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma
 import { ResetParticipantCacheService } from '../../service/reset-participant-cache.service'
 
 @ApiTags('participant')
+@UsePipes(ValidationPipe)
 @UseInterceptors(CacheInterceptor)
 @UseFilters(new GenerericPrismaExceptionFilter())
 @Controller('participant')

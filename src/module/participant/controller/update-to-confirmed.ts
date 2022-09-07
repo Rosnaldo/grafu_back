@@ -1,4 +1,4 @@
-import { Body, Controller, Logger, Put, UseFilters } from '@nestjs/common'
+import { Body, Controller, Logger, Put, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { ParticipantStatus } from '@prisma/client'
 
@@ -9,6 +9,7 @@ import { UpdateToConfirmedDto } from '../swagger-dto/update-to-confirmed'
 import { ParticipantUpdateUseCase } from '../use-case/update-participant'
 
 @ApiTags('participant')
+@UsePipes(ValidationPipe)
 @UseFilters(new GenerericPrismaExceptionFilter())
 @Controller('participant')
 export class ParticipantUpdateToConfirmedController {

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseFilters } from '@nestjs/common'
+import { Body, Controller, Post, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 
 import { isNil as _isNil } from 'lodash'
@@ -9,6 +9,7 @@ import { ParticipantCreateUnregisteredUseCase } from '../../use-case/create-unre
 import { ResetParticipantCacheService } from '../../service/reset-participant-cache.service'
 
 @ApiTags('participant')
+@UsePipes(ValidationPipe)
 @UseFilters(new GenerericPrismaExceptionFilter())
 @Controller('participant')
 export class InviteParticipantByEmailController {

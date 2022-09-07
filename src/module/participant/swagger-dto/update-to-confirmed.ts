@@ -1,18 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { IsEmail, IsUUID, ValidateIf } from 'class-validator'
 
 export class UpdateToConfirmedDto {
   @ApiProperty({
     type: String,
   })
+  @IsUUID()
   playdayId: string
 
   @ApiProperty({
     type: String,
+    default: null,
   })
-  participantId?: string
+  @IsUUID()
+  @ValidateIf((object, value) => value !== null)
+  participantId: string | null
 
   @ApiProperty({
     type: String,
+    default: null,
   })
-  email?: string
+  @IsEmail()
+  @ValidateIf((object, value) => value !== null)
+  email: string | null
 }
