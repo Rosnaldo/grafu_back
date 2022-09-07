@@ -48,11 +48,11 @@ describe('UserUpdateAvatarController', () => {
   it('Should call UserUpdateAvatarController with right param', async function () {
     const { spyUpdateOneRepository, spyGetUserCacheService } = Sut(MakeMockUser())
   
-    await controller.execute('id', { avatar: 'avatar' })
+    await controller.execute('id', { avatarUrl: 'avatarUrl', avatarUuid: 'avatarUuid' })
   
     expect(spyUpdateOneRepository).toHaveBeenCalledWith(
       { id: 'id' },
-      { avatar: 'avatar' }
+      { avatarUrl: 'avatarUrl', avatarUuid: 'avatarUuid' }
     )
     expect(spyGetUserCacheService).toHaveBeenCalledWith('andreytsuzuki@gmail.com')
   })

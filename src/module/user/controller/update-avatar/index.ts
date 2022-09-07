@@ -23,7 +23,10 @@ export class UserUpdateAvatarController {
     await this.userUpdateUseCase.execute(
       '26bdf87b-4917-4d59-87ad-3fa1dd6ce6a8',
       { id },
-      { avatar: body.avatar },
+      {
+        avatarUrl: body.avatarUrl,
+        avatarUuid: body.avatarUuid,
+      },
     );
   }
 }

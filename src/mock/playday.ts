@@ -88,7 +88,8 @@ export const MakeMockPlaydayWithParticipants = (): PlaydayWithParticipantsAndUse
         "id": "c3bacb71-23b9-45b8-b7ba-cdf3f7326e36",
         "name": "Mayrana Brito",
         "email": "mayranabrito@gmail.com",
-        "avatar": "https://firebasestorage.googleapis.com/v0/b/grafu-357616.appspot.com/o/avatar-images%2F4679a6cf-ef13-478f-85f6-ad3bec84298f?alt=media&token=103c8ad3-9916-4fcc-a90f-abc5a1e5663f",
+        "avatarUrl": "https://firebasestorage.googleapis.com/v0/b/grafu-357616.appspot.com/o/avatar-images%2F4679a6cf-ef13-478f-85f6-ad3bec84298f?alt=media&token=103c8ad3-9916-4fcc-a90f-abc5a1e5663f",
+        "avatarUuid": "4679a6cf-ef13-478f-85f6-ad3bec84298f",
         "profession": "pintora",
         "age": 28
       }
@@ -103,7 +104,8 @@ export const MakeMockPlaydayWithParticipants = (): PlaydayWithParticipantsAndUse
         "id": "c3bacb71-23b9-45b8-b7ba-cdf3f7326e36",
         "name": "Andrey Kenji Tsuzuki",
         "email": "andreytsuzuki@gmail.com",
-        "avatar": "https://firebasestorage.googleapis.com/v0/b/grafu-357616.appspot.com/o/avatar-images%2F4679a6cf-ef13-478f-85f6-ad3bec84298f?alt=media&token=103c8ad3-9916-4fcc-a90f-abc5a1e5663f",
+        "avatarUrl": "https://firebasestorage.googleapis.com/v0/b/grafu-357616.appspot.com/o/avatar-images%2F4679a6cf-ef13-478f-85f6-ad3bec84298f?alt=media&token=103c8ad3-9916-4fcc-a90f-abc5a1e5663f",
+        "avatarUuid": "4679a6cf-ef13-478f-85f6-ad3bec84298f",
         "profession": "desenvolvedor",
         "age": 30
       }

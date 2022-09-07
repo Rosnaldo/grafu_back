@@ -44,7 +44,8 @@ describe('UserRegisterController', () => {
     const body = {
       email: 'email',
       name: 'name',
-      avatar: 'avatar',
+      avatarUrl: 'avatarUrl',
+      avatarUuid: 'avatarUuid',
       age: 2,
       profession: 'profession',
     }

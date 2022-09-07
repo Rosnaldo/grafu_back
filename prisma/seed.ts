@@ -6,7 +6,7 @@ async function main() {
     data: {
       email: 'andreytsuzuki@gmail.com',
       name: 'Andrey Tsuzuki',
-      avatar: 'https://media-exp1.licdn.com/dms/image/C4D03AQFXAsqjqMZjSw/profile-displayphoto-shrink_800_800/0/1598561454891?e=1663200000&v=beta&t=d9HE6iKFhvYYZV2iPLDQIeLfVK2vjuURE1acSOKN2s0',
+      avatarUrl: 'https://media-exp1.licdn.com/dms/image/C4D03AQFXAsqjqMZjSw/profile-displayphoto-shrink_800_800/0/1598561454891?e=1663200000&v=beta&t=d9HE6iKFhvYYZV2iPLDQIeLfVK2vjuURE1acSOKN2s0',
     }
   })
 
@@ -14,7 +14,7 @@ async function main() {
     data: {
       email: 'tainassantos@gmail.com',
       name: 'Tainá Santos',
-      avatar:
+      avatarUrl:
           'https://media-exp1.licdn.com/dms/image/C4D03AQHAKn6G9ZF3hA/profile-displayphoto-shrink_800_800/0/1658359139701?e=1663804800&v=beta&t=Gs9Veyl9gRO3VA1HDJvm18sjG3uHVEahkcGULhTzx7s',
     }
   })
@@ -23,7 +23,7 @@ async function main() {
     data: {
       email: 'mayranabrito@gmail.com',
       name: 'Mayrana Brito',
-      avatar: 'https://media-exp1.licdn.com/dms/image/C4D03AQG3j392gmNRfQ/profile-displayphoto-shrink_800_800/0/1622327303559?e=1665014400&v=beta&t=3sy3EDBNl507QBSEALd1BMbVBsEReWuyPS2VqBixo64',
+      avatarUrl: 'https://media-exp1.licdn.com/dms/image/C4D03AQG3j392gmNRfQ/profile-displayphoto-shrink_800_800/0/1622327303559?e=1665014400&v=beta&t=3sy3EDBNl507QBSEALd1BMbVBsEReWuyPS2VqBixo64',
     }
   })
 
@@ -31,7 +31,7 @@ async function main() {
     data: {
       email: 'luizroberto@gmail.com',
       name: 'Luiz Roberto Fava',
-      avatar:
+      avatarUrl:
           'https://media-exp1.licdn.com/dms/image/C4D03AQFszy6cgvKZFg/profile-displayphoto-shrink_800_800/0/1653030063690?e=1664409600&v=beta&t=CsntU7adzK0R22Sk22hut67qIw9YODPjz8THD_Q1cpU',
     }
   })
@@ -40,7 +40,7 @@ async function main() {
     data: {
       email: 'marianogomide@gmail.com',
       name: 'Mariano Gomide',
-      avatar:
+      avatarUrl:
           'https://media-exp1.licdn.com/dms/image/C4D03AQFvf2kCA75r_g/profile-displayphoto-shrink_800_800/0/1602959726513?e=1664409600&v=beta&t=WwDBjj-SojHVPKP8Aed1BVaIQOHVO9VhW81T1foOqAU',
     }
   })
@@ -49,7 +49,7 @@ async function main() {
     data: {
       email: 'stefanievoss@gmail.com',
       name: 'Stefanie Voss',
-      avatar:
+      avatarUrl:
           'https://media-exp1.licdn.com/dms/image/C4D03AQHIFwJXNpJT6g/profile-displayphoto-shrink_800_800/0/1644233369004?e=1664409600&v=beta&t=-a7PwyulQuCeyQJwL8zjQLEOEW66AfzRla1LsjAhyBw',
     }
   })
