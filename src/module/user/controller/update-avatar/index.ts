@@ -21,7 +21,7 @@ export class UserUpdateAvatarController {
     @Body() body: UpdateAvatarDto,
   ): Promise<void> {
     await this.userUpdateUseCase.execute(
-      '26bdf87b-4917-4d59-87ad-3fa1dd6ce6a8',
+      'fcae0492-0e36-49d0-a674-932c547e81d0',
       { id },
       {
         avatarUrl: body.avatarUrl,

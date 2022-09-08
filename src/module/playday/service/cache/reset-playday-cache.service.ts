@@ -1,4 +1,4 @@
-import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common'
+import { CACHE_MANAGER, Inject, Injectable, Logger } from '@nestjs/common'
 import { User } from '@prisma/client';
 import { Cache } from 'cache-manager';
 import { ParticipantsWithUser } from 'src/module/participant/model/participant-with-user';
@@ -8,6 +8,8 @@ import { GetPlaydayCacheService } from './get-playday-cache.service';
 
 @Injectable()
 export class ResetPlaydayCacheService {
+  private readonly logger = new Logger(ResetPlaydayCacheService.name)
+
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private readonly getPlaydayCache: GetPlaydayCacheService,

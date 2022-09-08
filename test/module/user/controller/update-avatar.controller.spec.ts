@@ -42,7 +42,7 @@ describe('UserUpdateAvatarController', () => {
     await controller.execute('id', { avatarUrl: 'avatarUrl', avatarUuid: 'avatarUuid' })
   
     expect(spy).toHaveBeenCalledWith(
-      '26bdf87b-4917-4d59-87ad-3fa1dd6ce6a8',
+      'fcae0492-0e36-49d0-a674-932c547e81d0',
       { id: 'id' },
       { avatarUrl: 'avatarUrl', avatarUuid: 'avatarUuid' }
     )

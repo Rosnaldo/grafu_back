@@ -98,7 +98,7 @@ export const MakeMockPlaydayWithParticipants = (): PlaydayWithParticipantsAndUse
       "id": "50f98b79-9d89-4c9e-b213-52a73ac1e721",
       "email": "andreytsuzuki@gmail.com",
       "userId": "c3bacb71-23b9-45b8-b7ba-cdf3f7326e36",
-      "playdayId": "26bdf87b-4917-4d59-87ad-3fa1dd6ce6a8",
+      "playdayId": "fcae0492-0e36-49d0-a674-932c547e81d0",
       "status": "confirmed",
       "user": {
         "id": "c3bacb71-23b9-45b8-b7ba-cdf3f7326e36",
