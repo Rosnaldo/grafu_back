@@ -3,25 +3,25 @@ import { Logger } from '@nestjs/common'
 
 import { ResetParticipantCacheService } from 'src/module/participant/service/reset-participant-cache.service'
 import { ResetPlaydayCacheService } from 'src/module/playday/service/cache/reset-playday-cache.service'
-import { GetPlaydayCacheService } from 'src/module/playday/service/cache/get-playday-cache.service'
-import { MakeMockPlaydayWithParticipants } from 'src/mock/playday'
-import { Playday } from '@prisma/client'
-import { MakeMockParticipant } from 'src/mock/participant'
+import { MakeMockParticipantsWithUser } from 'src/mock/participant'
+import { ResetParticipantCheckInviteStatusCacheService } from 'src/module/participant/service/check-invite-status-cache.service'
 
 let resetCache: ResetParticipantCacheService;
 const mockResetPlaydayCacheService = {
+  byParticipant: jest.fn(),
+}
+
+const mockResetParticipantCheckInviteStatusCacheService = {
   execute: jest.fn(),
 }
 
-const mockGetPlaydayCacheService = {
-  execute: jest.fn(),
-}
+const participant = MakeMockParticipantsWithUser();
 
-const Sut = (playday: Playday | null) => {
-  const spyGetPlaydayCache = jest.spyOn(mockGetPlaydayCacheService, 'execute').mockResolvedValue(playday)
-  const spyResetCache = jest.spyOn(mockResetPlaydayCacheService, 'execute').mockResolvedValue(playday)
+const Sut = () => {
+  const spyResetparticipantCache = jest.spyOn(mockResetParticipantCheckInviteStatusCacheService, 'execute')
+  const spyResetCache = jest.spyOn(mockResetPlaydayCacheService, 'byParticipant')
   
-  return { spyResetCache, spyGetPlaydayCache }
+  return { spyResetCache, spyResetparticipantCache }
 }
 
 describe('ResetParticipantCacheService', () => {
@@ -29,15 +29,15 @@ describe('ResetParticipantCacheService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         ResetParticipantCacheService,
+        ResetParticipantCheckInviteStatusCacheService,
         ResetPlaydayCacheService,
-        GetPlaydayCacheService,
       ],
     })
       .setLogger(new Logger())
+      .overrideProvider(ResetParticipantCheckInviteStatusCacheService)
+      .useValue(mockResetParticipantCheckInviteStatusCacheService)
       .overrideProvider(ResetPlaydayCacheService)
       .useValue(mockResetPlaydayCacheService)
-      .overrideProvider(GetPlaydayCacheService)
-      .useValue(mockGetPlaydayCacheService)
       .compile()
 
     resetCache = module.get<ResetParticipantCacheService>(ResetParticipantCacheService)
@@ -51,53 +51,18 @@ describe('ResetParticipantCacheService', () => {
     expect(resetCache).toBeDefined()
   })
 
-  const mockParticipant = MakeMockParticipant()
+  const mockParticipant = MakeMockParticipantsWithUser()
   const playdayId = 'playdayId'
 
   it('when playday cache not exist', async function () {
-    const { spyGetPlaydayCache, spyResetCache } = Sut(null)
+    const { spyResetparticipantCache, spyResetCache } = Sut()
 
     await resetCache.execute(
       playdayId,
       mockParticipant,
     )
 
-    expect(spyGetPlaydayCache).toHaveBeenCalledWith(playdayId)
-    expect(spyResetCache).not.toHaveBeenCalled()
-  })
-
-  it('when playday cache exist and new participant is found should update', async function () {
-    const mockPlayday = MakeMockPlaydayWithParticipants()
-    mockPlayday.participants.push(mockParticipant)
-
-    const pushSpy = jest.spyOn(mockPlayday.participants, 'push');
-
-    const { spyGetPlaydayCache, spyResetCache } = Sut(mockPlayday)
-
-    await resetCache.execute(
-      playdayId,
-      mockParticipant
-    )
-
-    expect(spyGetPlaydayCache).toHaveBeenCalledWith(playdayId)
-    expect(spyResetCache).toHaveBeenCalledWith('playdayId', mockPlayday)
-    expect(pushSpy).not.toHaveBeenCalled()
-  })
-
-  it('when playday cache exist and new participant is not found should add', async function () {
-    const mockPlayday = MakeMockPlaydayWithParticipants()
-
-    const pushSpy = jest.spyOn(mockPlayday.participants, 'push');
-
-    const { spyGetPlaydayCache, spyResetCache } = Sut(mockPlayday)
-
-    await resetCache.execute(
-      playdayId,
-      mockParticipant
-    )
-
-    expect(spyGetPlaydayCache).toHaveBeenCalledWith(playdayId)
-    expect(spyResetCache).toHaveBeenCalledWith('playdayId', mockPlayday)
-    expect(pushSpy).toHaveBeenCalled()
+    expect(spyResetparticipantCache).toHaveBeenCalledWith('playdayId', participant)
+    expect(spyResetCache).toHaveBeenCalledWith('playdayId', participant)
   })
 })
