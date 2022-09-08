@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsAlpha, IsEmail, IsNumber, IsUrl, IsUUID, ValidateIf } from 'class-validator'
+import { IsEmail, IsNumber, IsUrl, IsUUID, ValidateIf } from 'class-validator'
 import { User } from '@prisma/client'
 
 export class UserRegisterDto implements Omit<User, 'id'> {
@@ -12,7 +12,6 @@ export class UserRegisterDto implements Omit<User, 'id'> {
   @ApiProperty({
     type: String,
   })
-  @IsAlpha()
   name: string
 
   @ApiProperty({
