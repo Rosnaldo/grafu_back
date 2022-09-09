@@ -1,3 +1,5 @@
+import './tracting';
+
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import {
@@ -5,6 +7,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { Logger as PinoLogger } from 'nestjs-pino';
 import { AppModule } from './app.module'
 import { AllExceptionsFilter } from './common/filter/all-exceptions-filter'
 import { HttpExceptionFilter } from './common/filter/http-exception.filter'
@@ -15,8 +18,10 @@ declare const module: any
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter()
+    new FastifyAdapter(),
+    { bufferLogs: true }
   )
+  app.useLogger(app.get(PinoLogger));
 
   app.enableCors()
   app.useGlobalFilters(new AllExceptionsFilter(), new HttpExceptionFilter())

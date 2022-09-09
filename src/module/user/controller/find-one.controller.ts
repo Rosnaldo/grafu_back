@@ -1,6 +1,7 @@
 import { BadRequestException, CacheInterceptor, Controller, Get, Logger, Param, Query, UseFilters, UseInterceptors } from '@nestjs/common'
 import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { User } from '@prisma/client'
+import { Span, TraceService } from 'nestjs-ddtrace';
 
 import { isNil as _isNil } from 'lodash'
 import { GenerericPrismaExceptionFilter } from 'src/common/filter/gereric-prisma-exception.filter'
@@ -12,11 +13,13 @@ import { UserQueryService } from '../service/query.service'
 @UseInterceptors(CacheInterceptor)
 @UseFilters(new GenerericPrismaExceptionFilter())
 @Controller('user')
+@Span()
 export class UserFindOneController {
   private readonly logger = new Logger(UserFindOneController.name)
   constructor(
     private readonly repository: UserGetOneRepository,
     private readonly queryService: UserQueryService,
+    private readonly traceService: TraceService,
   ) {}
 
   @Get(':email')

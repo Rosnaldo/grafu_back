@@ -2,6 +2,8 @@ import { CacheInterceptor, CacheModule, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import * as redisStore from 'cache-manager-redis-store';
+import { DatadogTraceModule } from 'nestjs-ddtrace';
+import { LoggerModule } from 'nestjs-pino';
 
 import { ParticipantModule } from './module/participant/participant.module'
 import { PlaydayModule } from './module/playday/playday.module'
@@ -11,6 +13,12 @@ const ONE_WEEK = 60 * 60 * 24 * 7
 
 @Module({
   imports: [
+    LoggerModule.forRoot({
+      pinoHttp: {
+        level: process.env.ENV !== 'prod' ? 'trace' : 'info'
+      }
+    }), 
+    DatadogTraceModule.forRoot(),
     CacheModule.register({
       isGlobal: true,
       store: redisStore,
