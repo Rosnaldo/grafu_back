@@ -19,3 +19,8 @@ npm run migrate:deploy
 ```
 git push heroku main
 ```
+
+
+## Heroku Config Datadog Buildpack
+https://github.com/DataDog/heroku-buildpack-datadog
+Datadog dashboard -> integrations -> heroku
