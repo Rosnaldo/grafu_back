@@ -23,7 +23,11 @@ async function bootstrap() {
   )
   app.useLogger(app.get(PinoLogger));
 
-  app.enableCors({ origin: true })
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,POST,DELETE',
+    credentials: true,
+  })
   app.useGlobalFilters(new AllExceptionsFilter(), new HttpExceptionFilter())
 
   const config = app.get<ConfigService>(ConfigService)
