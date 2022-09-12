@@ -20,7 +20,7 @@ host: Heroku <br>
 <br>
 
 The modular architeture decision prepares to posible future microservice split. <br>
-The division layers Controller, UseCases, Services, repositories and Entities are been respected keeping Clean Architeture principles. <br>
+The division layers Controller, UseCases, Services, Repositories and Entities are been respected keeping Clean Architeture principles. <br>
 Class-validator middleware ensure data input integrity. <br>
 Swagger docs are been been generated automatically by annotations. <br>
 Prisma helpes updating DB easly with migrations and highly typed queries also entites are generated automatically. <br>
