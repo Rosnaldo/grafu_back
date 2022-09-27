@@ -14,10 +14,4 @@ export class RegisterDto implements Pick<Participant, 'email' | 'playdayId'> {
   })
   @IsUUID()
   playdayId: string
-
-  @ApiProperty({
-    type: String,
-  })
-  @IsUUID()
-  userId: string
 }
